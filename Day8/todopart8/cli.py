@@ -1,6 +1,9 @@
 # from functions import get_todos, write_todo
 
 import functions
+import time
+
+print(f"Today's todo: {time.strftime('%H:%M, %d %b %Y')}")
 
 while True:
     user_action = input('Type add, show, edit, complete or exit: ').strip()
