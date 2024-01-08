@@ -6,15 +6,16 @@ sg.theme('Black')
 clock = sg.Text('', key='clock')
 label = sg.Text("Type in a to-do: ")
 input_box = sg.InputText(tooltip="Enter The todo", key='todo')
-list_box = sg.Listbox(values=functions.get_todos(),key='todos',enable_events=True,size=[45,10])
+list_box = sg.Listbox(values=functions.get_todos(), key='todos', enable_events=True, size=[45, 10])
 
-add_button = sg.Button('Add')
+add_button = sg.Button(size=50 , image_source='add.png',tooltip='Add Todo', mouseover_colors='LightBlue2')
 edit_button = sg.Button('Edit')
 complete_button = sg.Button('Complete')
 exit_button = sg.Button('Exit')
 
 window = sg.Window("My To-Do App",
-                   layout=[[clock],[label], [input_box, add_button],[list_box,edit_button,complete_button], [exit_button]],
+                   layout=[[clock], [label], [input_box, add_button], [list_box, edit_button, complete_button],
+                           [exit_button]],
                    font=('Helvetica', 20))
 while True:
     event, values = window.read(timeout=10)
@@ -34,7 +35,7 @@ while True:
                 window['todos'].update(values=todos)
                 window['todo'].update(value='')
             except IndexError:
-                sg.popup('Select Something to Edit',font=('Helvetica', 20))
+                sg.popup('Select Something to Edit', font=('Helvetica', 20))
 
         case 'Complete':
             try:
@@ -44,7 +45,7 @@ while True:
                 window['todos'].update(values=todos)
                 window['todo'].update(value='')
             except IndexError:
-                sg.popup('Select Something to Complete',font=('Helvetica', 20))
+                sg.popup('Select Something to Complete', font=('Helvetica', 20))
         case 'todos':
             window['todo'].update(value=values['todos'][0])
         case 'Exit' | sg.WIN_CLOSED:
